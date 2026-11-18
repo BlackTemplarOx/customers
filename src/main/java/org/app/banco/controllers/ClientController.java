@@ -92,6 +92,7 @@ public class ClientController {
     @DeleteMapping("/{curp}")
     public ResponseEntity<APIResponse<Void>> delete(@PathVariable String curp){
 
+        service.remove(curp);
 
         return ResponseEntity.status(HttpStatus.OK).body(
                 new APIResponse<>(
