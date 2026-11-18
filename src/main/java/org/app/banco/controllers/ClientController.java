@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.app.banco.models.Client;
 import org.app.banco.models.request.ClientRequest;
 import org.app.banco.models.response.APIResponse;
 import org.app.banco.models.response.ClientResponse;
@@ -78,13 +77,27 @@ public class ClientController {
             String curp,
             @Valid @RequestBody ClientRequest clientRequest){
 
-
+        service.update(curp, clientRequest);
 
         return ResponseEntity.status(HttpStatus.OK).body(
                 new APIResponse<>(
                         LocalDateTime.now(),
                         200,
                         "Client succesfully updated!.",
+                        null,
+                        null
+                ));
+    }
+
+    @DeleteMapping("/{curp}")
+    public ResponseEntity<APIResponse<Void>> delete(@PathVariable String curp){
+
+
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new APIResponse<>(
+                        LocalDateTime.now(),
+                        200,
+                        "Client succesfully eliminated!.",
                         null,
                         null
                 ));
